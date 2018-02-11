@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1080187009087",
+    "firebase_url": "https://cunysecond.firebaseio.com",
+    "project_id": "cunysecond",
+    "storage_bucket": "cunysecond.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1080187009087:android:1a708e906b324e46",
+        "android_client_info": {
+          "package_name": "com.tareksaidee.cunysecond"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1080187009087-v73ajvejc964d455u5d9h3nuor67jdra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tareksaidee.cunysecond",
+            "certificate_hash": "64c77e6dfab501a99fc1de3ba195b3438adddafd"
+          }
+        },
+        {
+          "client_id": "1080187009087-6gt9pn3914vv58opsrp8nb45jlb602bv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjxNSH5lmAxKtuo4nCQryLCvbBcngUevI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1080187009087-6gt9pn3914vv58opsrp8nb45jlb602bv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
