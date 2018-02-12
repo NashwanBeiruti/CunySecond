@@ -1,9 +1,12 @@
 package com.tareksaidee.cunysecond;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.VideoView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +27,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        VideoView videoview = (VideoView) findViewById(R.id.background_video);
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.nyc);
+        videoview.setVideoURI(uri);
+        videoview.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
+        videoview.start();
         mFirebaseAuth = FirebaseAuth.getInstance();
         providers = Arrays.asList(
                 new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
