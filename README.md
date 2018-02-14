@@ -11,7 +11,7 @@
     <li>main menu page, enroll, account, chats, </li>
     <li>schedule</li>
     <li>share stuff</li>
-    <li>student profile with list of classes, grade, credits, money due, student info, major, minor<li>
+    <li>student profile with list of classes, grade, credits, money due, student info, major, minor</li>
     <li>allow user to declare a major/minor</li>
 </ul>
 
