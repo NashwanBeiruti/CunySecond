@@ -4,7 +4,7 @@
 <ul>
     <li>login</li>
     <li>register for a class, drop classes</li>
-    <li>for class, show instructor, room number, seats, credits, prereqs, department, id, class number, name, days, time, school, grad/under, mode, semester, year</li>
+    <li>for class, show instructor, room number, seats, credits, prereqs, department, id, class number, name, days, time, school, grad/under, mode, semester, year, red or green if filled</li>
     <li>for a student, you need max credits, classes registered for, id, name, total credits, money due, school, term</li>
     <li>search for classes</li>
     <li>api that allows you to retrieve all this info</li>

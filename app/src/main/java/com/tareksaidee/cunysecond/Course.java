@@ -29,6 +29,7 @@ public class Course {
     private List<String> prereqs;
     private String description;
     private List<String> textbooks;
+    private List<String> enrolledStudents;
 
     public String getName() {
         return name;
@@ -188,5 +189,13 @@ public class Course {
 
     public void setTextbooks(List<String> textbooks) {
         this.textbooks = textbooks;
+    }
+
+    public List<String> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
+    public void setEnrolledStudents(List<String> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
     }
 }
