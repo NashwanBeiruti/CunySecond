@@ -8,31 +8,29 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/dept_and_id"
+            android:id="@+id/section_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:text="CISC 1100" />
+            tools:text="Section ID: 45631" />
 
         <TextView
-            android:id="@+id/course_name"
+            android:id="@+id/course_semester"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Intro to Programming" />
+            tools:text="Spring 2018" />
 
         <TextView
-            android:id="@+id/prof_name"
+            android:id="@+id/course_mode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Prof. Moshe Augenstein" />
+            tools:text="Mode: Fully Online" />
     </LinearLayout>
 
     <LinearLayout
@@ -45,30 +43,26 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/course_days"
+            android:id="@+id/registered_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="Wed, Thur" />
-
+            tools:text="Registered: 29/40" />
         <TextView
-            android:id="@+id/course_time"
+            android:id="@+id/course_room"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="9:30AM-10:45AM" />
-
+            tools:text="Room: 232NE" />
         <TextView
-            android:id="@+id/course_credits"
+            android:id="@+id/course_school"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            tools:text="3 Credits" />
-
+            tools:text="Brooklyn College" />
     </LinearLayout>
 
 </LinearLayout>
 
-    <!--
-        name, credits, department, class id, days , instructor, semester/year, time, full or na
-    -->
+
+    <!--section id, room, capacity/filled, school, semester/year, mode, prerequs-->
