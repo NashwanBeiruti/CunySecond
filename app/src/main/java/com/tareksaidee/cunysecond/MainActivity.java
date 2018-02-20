@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.VideoView;
 
 import com.firebase.ui.auth.AuthUI;
@@ -88,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         mFirebaseAuth.signOut();
+    }
+
+    public void buttonControl(View view){
+        Intent myIntent = new Intent(MainActivity.this, EnrollCourses.class);
+        startActivity(myIntent);
     }
 }
