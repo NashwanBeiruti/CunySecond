@@ -47,4 +47,14 @@ public class CoursesAdapter extends ExpandableRecyclerAdapter<CourseParent, Cour
     public void onBindChildViewHolder(@NonNull CourseChildViewHolder childViewHolder, int parentPosition, int childPosition, @NonNull Course child) {
         childViewHolder.bind(child);
     }
+
+    public void addCourse(CourseParent courseParent){
+        getParentList().add(courseParent);
+        notifyDataSetChanged();
+    }
+
+    void clear() {
+        getParentList().clear();
+    }
+
 }

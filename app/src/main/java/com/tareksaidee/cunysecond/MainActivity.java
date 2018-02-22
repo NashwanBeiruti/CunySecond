@@ -88,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        mFirebaseAuth.signOut();
+        if(mFirebaseAuth!=null)
+            mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
     }
 
     public void buttonControl(View view){

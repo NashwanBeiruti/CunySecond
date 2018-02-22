@@ -13,8 +13,9 @@ public class CourseParent implements Parent<Course> {
 
     private  List<Course> courses;
 
-    public CourseParent(List<Course> courses){
-        this.courses = courses;
+    public CourseParent(Course course){
+        courses = new ArrayList<>();
+        courses.add(course);
     }
 
     @Override
