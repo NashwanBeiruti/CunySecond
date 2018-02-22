@@ -50,7 +50,7 @@ public class CoursesAdapter extends ExpandableRecyclerAdapter<CourseParent, Cour
 
     public void addCourse(CourseParent courseParent){
         getParentList().add(courseParent);
-        notifyDataSetChanged();
+        notifyParentDataSetChanged(false);
     }
 
     void clear() {
