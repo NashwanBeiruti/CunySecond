@@ -23,12 +23,13 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private List<AuthUI.IdpConfig> providers;
+    VideoView videoview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        VideoView videoview = (VideoView) findViewById(R.id.background_video);
+        videoview = (VideoView) findViewById(R.id.background_video);
         Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.nyc);
         videoview.setVideoURI(uri);
         videoview.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
                 //signed in
+                mFirebaseAuth.addAuthStateListener(mAuthStateListener);
             } else {
                 if (resultCode == RESULT_CANCELED) {
                     finish();
@@ -83,13 +85,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+        videoview.start();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        if(mFirebaseAuth!=null)
+        if (mAuthStateListener != null){
             mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
+        }
     }
 
     public void buttonControl(View view){

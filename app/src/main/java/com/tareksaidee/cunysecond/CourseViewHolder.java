@@ -17,6 +17,7 @@ public class CourseViewHolder extends ParentViewHolder {
     private TextView days;
     private TextView time;
     private TextView credits;
+    private TextView divider;
 
     public CourseViewHolder(View itemView){
         super(itemView);
@@ -26,6 +27,7 @@ public class CourseViewHolder extends ParentViewHolder {
         days = (TextView) itemView.findViewById(R.id.course_days);
         time = (TextView) itemView.findViewById(R.id.course_time);
         credits = (TextView) itemView.findViewById(R.id.course_credits);
+        divider = (TextView) itemView.findViewById(R.id.course_divider);
     }
 
     public void bind(CourseParent courseParent){
@@ -39,5 +41,9 @@ public class CourseViewHolder extends ParentViewHolder {
         days.setText(daysString);
         time.setText(course.getStartTime().toString() + "-" + course.getEndTime());
         credits.setText(course.getCredits() + "");
+    }
+
+    public void hideDivider(){
+        divider.setVisibility(View.INVISIBLE);
     }
 }

@@ -46,6 +46,7 @@ public class EnrollCourses extends AppCompatActivity {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Course temp = dataSnapshot.getValue(Course.class);
+                    temp.setSchool(mMessagesDatabaseReference.getKey());
                     CourseParent parent = new CourseParent(temp);
                     coursesAdapter.addCourse(parent);
                     Log.d("whatever", temp.toString());

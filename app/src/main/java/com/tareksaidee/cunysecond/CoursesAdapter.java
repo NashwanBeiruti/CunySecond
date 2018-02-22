@@ -41,6 +41,8 @@ public class CoursesAdapter extends ExpandableRecyclerAdapter<CourseParent, Cour
     @Override
     public void onBindParentViewHolder(@NonNull CourseViewHolder parentViewHolder, int parentPosition, @NonNull CourseParent parent) {
         parentViewHolder.bind(parent);
+        if(parentPosition==0)
+            parentViewHolder.hideDivider();
     }
 
     @Override
