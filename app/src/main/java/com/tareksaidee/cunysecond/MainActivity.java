@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonControl(View view){
-        Intent myIntent = new Intent(MainActivity.this, EnrollCourses.class);
+        Intent myIntent = new Intent(MainActivity.this, Search.class);
         startActivity(myIntent);
     }
 }

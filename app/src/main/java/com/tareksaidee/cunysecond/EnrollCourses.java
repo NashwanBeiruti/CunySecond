@@ -24,11 +24,13 @@ public class EnrollCourses extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mMessagesDatabaseReference;
     private ChildEventListener mChildEventListener;
+    private String classID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll_courses);
+        classID = getIntent().getStringExtra("classID");
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("brooklyn_college");
         coursesView = (RecyclerView) findViewById(R.id.courses_recycler);
@@ -40,7 +42,7 @@ public class EnrollCourses extends AppCompatActivity {
         coursesView.setLayoutManager(layoutManager);
     }
 
-    void attachDatabaseReadListener() {
+    void attachDatabaseReadListener(String classID) {
         if (mChildEventListener == null) {
             mChildEventListener = new ChildEventListener() {
                 @Override
@@ -72,7 +74,7 @@ public class EnrollCourses extends AppCompatActivity {
 
                 }
             };
-            mMessagesDatabaseReference.addChildEventListener(mChildEventListener);
+            mMessagesDatabaseReference.orderByChild("classID").equalTo(classID).addChildEventListener(mChildEventListener);
         }
     }
 
@@ -86,7 +88,7 @@ public class EnrollCourses extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        attachDatabaseReadListener();
+        attachDatabaseReadListener(classID);
     }
 
     void detachReadListener() {
