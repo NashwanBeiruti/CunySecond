@@ -9,10 +9,11 @@
 
     <EditText
         android:id="@+id/class_id_field"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_margin="32dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="3130"
+        android:hint="class ID"
         android:inputType="text" />
 
     <Button
