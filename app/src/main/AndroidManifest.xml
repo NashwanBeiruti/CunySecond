@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EnrollCourses" />
-        <activity android:name=".Search"></activity>
+        <activity android:name=".Search" />
+        <activity android:name=".UserAccount"></activity>
     </application>
 
 </manifest>
