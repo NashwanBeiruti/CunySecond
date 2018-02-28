@@ -97,7 +97,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonControl(View view){
-        Intent myIntent = new Intent(MainActivity.this, Search.class);
-        startActivity(myIntent);
+
+        switch (view.getId()){
+            case R.id.enroll_button:
+                Intent myIntent = new Intent(MainActivity.this, Search.class);
+                startActivity(myIntent);
+                break;
+            case R.id.account_button:
+                Intent accountIntent = new Intent(MainActivity.this, UserAccount.class);
+                startActivity(accountIntent);
+                break;
+        }
+
     }
 }
