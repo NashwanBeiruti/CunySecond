@@ -19,6 +19,15 @@ public class Student {
     private double GPA;
     private double moneyDue;
     private String phoneNumber;
+    private String school;
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
 
     public String getFirstName() {
         return firstName;
