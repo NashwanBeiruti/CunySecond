@@ -17,6 +17,8 @@ public class UserAccount extends AppCompatActivity {
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mUserDatabaseReference;
     private ChildEventListener mChildEventListener;
+    private MiniCourseAdapter currentCoursesAdapter;
+    private MiniCourseAdapter historyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,8 @@ public class UserAccount extends AppCompatActivity {
         userUID = mFirebaseAuth.getCurrentUser().getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUserDatabaseReference = mFirebaseDatabase.getReference().child("users");
+        currentCoursesAdapter = new MiniCourseAdapter(this);
+        historyAdapter = new MiniCourseAdapter(this);
     }
 
     void attachDatabaseReadListener() {
@@ -34,7 +38,6 @@ public class UserAccount extends AppCompatActivity {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Student student = dataSnapshot.getValue(Student.class);
-
                 }
 
                 @Override
