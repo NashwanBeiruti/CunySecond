@@ -20,6 +20,7 @@ public class Student {
     private double moneyDue;
     private String phoneNumber;
     private String school;
+    private String major;
 
     public String getSchool() {
         return school;
@@ -125,6 +126,13 @@ public class Student {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
 }
 
 

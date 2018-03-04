@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by tarek on 3/2/2018.
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class MiniCourseAdapter extends RecyclerView.Adapter<MiniCourseAdapter.MiniCourseViewHolder>{
 
-    private ArrayList<MiniCourse> miniCourses;
+    private List<MiniCourse> miniCourses;
     private Context mContext;
 
     MiniCourseAdapter(@NonNull Context context) {
@@ -42,8 +43,9 @@ public class MiniCourseAdapter extends RecyclerView.Adapter<MiniCourseAdapter.Mi
         return miniCourses.size();
     }
 
-    public void setMiniCourses(ArrayList<MiniCourse> courses){
-        miniCourses = courses;
+    public void setMiniCourses(List<MiniCourse> miniCourses) {
+        this.miniCourses = miniCourses;
+        notifyDataSetChanged();
     }
 
     public void clear() {

@@ -12,7 +12,7 @@ public class MiniCourse {
     private int credits;
     private String room;
     private String grade;
-    private String sectionID;
+    private long sectionID;
     private String semester;
     private int year;
     private List<String> days;
@@ -68,11 +68,11 @@ public class MiniCourse {
         this.grade = grade;
     }
 
-    public String getSectionID() {
+    public long getSectionID() {
         return sectionID;
     }
 
-    public void setSectionID(String sectionID) {
+    public void setSectionID(long sectionID) {
         this.sectionID = sectionID;
     }
 
