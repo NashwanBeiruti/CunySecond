@@ -3,64 +3,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/section_id"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Section ID: 45631" />
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/course_semester"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Spring 2018" />
+            <TextView
+                android:id="@+id/section_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Section ID: 45631" />
 
-        <TextView
-            android:id="@+id/course_mode"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/course_semester"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Spring 2018" />
+
+            <TextView
+                android:id="@+id/course_mode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Mode: Fully Online" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            tools:text="Mode: Fully Online" />
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/registered_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="Registered: 29/40" />
+
+            <TextView
+                android:id="@+id/course_room"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="Room: 232NE" />
+
+            <TextView
+                android:id="@+id/course_school"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="Brooklyn College" />
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/enroll_button"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/registered_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            tools:text="Registered: 29/40" />
-        <TextView
-            android:id="@+id/course_room"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            tools:text="Room: 232NE" />
-        <TextView
-            android:id="@+id/course_school"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            tools:text="Brooklyn College" />
-    </LinearLayout>
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/holo_green_dark"
+        android:gravity="center"
+        android:text="Enroll" />
 
 </LinearLayout>
-
 
     <!--section id, room, capacity/filled, school, semester/year, mode, prerequs-->
