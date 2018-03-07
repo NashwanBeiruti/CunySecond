@@ -20,6 +20,24 @@ public class MiniCourse {
     private String school;
     private String courseDeptID;
 
+    public MiniCourse(){}
+
+    public MiniCourse(Course course){
+        name = course.getName();
+        startTime = course.getStartTime();
+        endTime = course.getEndTime();
+        credits = course.getCredits();
+        room = course.getRoom();
+        grade = "IP";
+        sectionID = course.getSectionID();
+        semester = course.getSemester();
+        year = course.getYear();
+        days = course.getDays();
+        instructor = course.getInstructor();
+        school = course.getSchool();
+        courseDeptID = course.getDepartment() + " " + course.getClassID();
+    }
+
     public String getName() {
         return name;
     }
