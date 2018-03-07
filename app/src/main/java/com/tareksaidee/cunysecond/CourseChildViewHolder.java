@@ -34,7 +34,7 @@ public class CourseChildViewHolder extends ChildViewHolder {
     private Course myCourse;
     private Student myStudent;
 
-    public CourseChildViewHolder(View itemView){
+    public CourseChildViewHolder(View itemView) {
         super(itemView);
         sectionID = (TextView) itemView.findViewById(R.id.section_id);
         semester = (TextView) itemView.findViewById(R.id.course_semester);
@@ -46,13 +46,25 @@ public class CourseChildViewHolder extends ChildViewHolder {
         courseAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(myStudent==null)
-                    Toast.makeText(view.getContext(),"Student not found",Toast.LENGTH_SHORT).show();
-                else{
-                    List<MiniCourse> list =  myStudent.getCurrentCourses();
-                    list.add(new MiniCourse(myCourse));
-                    myStudent.setCurrentCourses(list);
-                    mUsersDatabaseRef.setValue(myStudent);
+                if (myStudent == null)
+                    Toast.makeText(view.getContext(), "Student not found", Toast.LENGTH_SHORT).show();
+                else {
+                    if (isEnrolled()) {
+                        List<MiniCourse> list = myStudent.getCurrentCourses();
+                        for (int i=0;i<list.size();i++)
+                            if (list.get(i).getSectionID() == myCourse.getSectionID()) {
+                                list.remove(i);
+                                break;
+                            }
+                        myStudent.setCurrentCourses(list);
+                        mUsersDatabaseRef.setValue(myStudent);
+                    } else {
+                        List<MiniCourse> list = myStudent.getCurrentCourses();
+                        list.add(new MiniCourse(myCourse));
+                        myStudent.setCurrentCourses(list);
+                        mUsersDatabaseRef.setValue(myStudent);
+                    }
+                    myStudent = null;
                 }
             }
         });
@@ -60,27 +72,20 @@ public class CourseChildViewHolder extends ChildViewHolder {
         mFirebaseAuth = FirebaseAuth.getInstance();
     }
 
-    public void bind(final Course course){
+    public void bind(final Course course) {
         sectionID.setText(course.getSectionID() + " ");
         semester.setText(course.getSemester());
         mode.setText(course.getMode());
-        registeredNumb.setText(course.getEnrolled() +"/" + course.getCapacity());
+        registeredNumb.setText(course.getEnrolled() + "/" + course.getCapacity());
         room.setText(course.getRoom());
         school.setText(course.getSchool());
         myCourse = course;
         mUsersDatabaseRef = mFirebaseDatabase.getReference().child("users").child(mFirebaseAuth.getCurrentUser().getUid());
-        mUsersDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        mUsersDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 myStudent = dataSnapshot.getValue(Student.class);
-                if(isEnrolled()){
-                    courseAction.setText("DROP");
-                    courseAction.setBackgroundColor(courseAction.getContext().getResources().getColor(R.color.dropColor));
-                }
-                else{
-                    courseAction.setText("ENROLL");
-                    courseAction.setBackgroundColor(courseAction.getContext().getResources().getColor(R.color.enrollColor));
-                }
+                updateState();
             }
 
             @Override
@@ -90,12 +95,22 @@ public class CourseChildViewHolder extends ChildViewHolder {
         });
     }
 
-    boolean isEnrolled(){
-        List<MiniCourse> list =  myStudent.getCurrentCourses();
-        for(MiniCourse mCourse:list)
-            if(mCourse.getSectionID()==myCourse.getSectionID())
+    private boolean isEnrolled() {
+        List<MiniCourse> list = myStudent.getCurrentCourses();
+        for (MiniCourse mCourse : list)
+            if (mCourse.getSectionID() == myCourse.getSectionID())
                 return true;
         return false;
+    }
+
+    private void updateState() {
+        if (isEnrolled()) {
+            courseAction.setText("DROP");
+            courseAction.setBackgroundColor(courseAction.getContext().getResources().getColor(R.color.dropColor));
+        } else {
+            courseAction.setText("ENROLL");
+            courseAction.setBackgroundColor(courseAction.getContext().getResources().getColor(R.color.enrollColor));
+        }
     }
 }
 
