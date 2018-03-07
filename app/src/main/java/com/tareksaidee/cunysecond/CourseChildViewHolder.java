@@ -1,6 +1,5 @@
 package com.tareksaidee.cunysecond;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -61,7 +60,7 @@ public class CourseChildViewHolder extends ChildViewHolder {
         mFirebaseAuth = FirebaseAuth.getInstance();
     }
 
-    public void bind(Course course){
+    public void bind(final Course course){
         sectionID.setText(course.getSectionID() + " ");
         semester.setText(course.getSemester());
         mode.setText(course.getMode());
@@ -74,7 +73,14 @@ public class CourseChildViewHolder extends ChildViewHolder {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 myStudent = dataSnapshot.getValue(Student.class);
-                Log.e("dsadasda",myStudent.getDOB());
+                if(isEnrolled()){
+                    courseAction.setText("DROP");
+                    courseAction.setBackgroundColor(courseAction.getContext().getResources().getColor(R.color.dropColor));
+                }
+                else{
+                    courseAction.setText("ENROLL");
+                    courseAction.setBackgroundColor(courseAction.getContext().getResources().getColor(R.color.enrollColor));
+                }
             }
 
             @Override
@@ -82,7 +88,14 @@ public class CourseChildViewHolder extends ChildViewHolder {
 
             }
         });
+    }
 
+    boolean isEnrolled(){
+        List<MiniCourse> list =  myStudent.getCurrentCourses();
+        for(MiniCourse mCourse:list)
+            if(mCourse.getSectionID()==myCourse.getSectionID())
+                return true;
+        return false;
     }
 }
 
