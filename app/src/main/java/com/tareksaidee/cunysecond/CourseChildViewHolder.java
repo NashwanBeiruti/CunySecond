@@ -30,6 +30,7 @@ public class CourseChildViewHolder extends ChildViewHolder {
     private Button courseAction;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mUsersDatabaseRef;
+    private DatabaseReference mClassesDatabaseRef;
     private FirebaseAuth mFirebaseAuth;
     private Course myCourse;
     private Student myStudent;
@@ -50,20 +51,11 @@ public class CourseChildViewHolder extends ChildViewHolder {
                     Toast.makeText(view.getContext(), "Student not found", Toast.LENGTH_SHORT).show();
                 else {
                     if (isEnrolled()) {
-                        List<MiniCourse> list = myStudent.getCurrentCourses();
-                        for (int i=0;i<list.size();i++)
-                            if (list.get(i).getSectionID() == myCourse.getSectionID()) {
-                                list.remove(i);
-                                break;
-                            }
-                        myStudent.setCurrentCourses(list);
-                        mUsersDatabaseRef.setValue(myStudent);
+                        dropCourse();
                     } else {
-                        List<MiniCourse> list = myStudent.getCurrentCourses();
-                        list.add(new MiniCourse(myCourse));
-                        myStudent.setCurrentCourses(list);
-                        mUsersDatabaseRef.setValue(myStudent);
+                        enrollCourse();
                     }
+                    mClassesDatabaseRef.setValue(myCourse);
                     myStudent = null;
                 }
             }
@@ -81,6 +73,7 @@ public class CourseChildViewHolder extends ChildViewHolder {
         school.setText(course.getSchool());
         myCourse = course;
         mUsersDatabaseRef = mFirebaseDatabase.getReference().child("users").child(mFirebaseAuth.getCurrentUser().getUid());
+        mClassesDatabaseRef = mFirebaseDatabase.getReference().child(course.getSchool()).child(course.getSectionID()+"");
         mUsersDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -112,7 +105,30 @@ public class CourseChildViewHolder extends ChildViewHolder {
             courseAction.setBackgroundColor(courseAction.getContext().getResources().getColor(R.color.enrollColor));
         }
     }
-}
 
-//put all my database stuff here through an onclick listener. I should store the course in onbind so
-//i can refer to it later when i need to add a course info to the user's account.
+    private void dropCourse(){
+        List<MiniCourse> list = myStudent.getCurrentCourses();
+        for (int i=0;i<list.size();i++)
+            if (list.get(i).getSectionID() == myCourse.getSectionID()) {
+                list.remove(i);
+                break;
+            }
+        myStudent.setCurrentCourses(list);
+        mUsersDatabaseRef.setValue(myStudent);
+        for(int i=0;i<myCourse.getEnrolledStudents().size();i++)
+            if(myCourse.getEnrolledStudents().get(i).equals(mFirebaseAuth.getCurrentUser().getUid())) {
+                myCourse.getEnrolledStudents().remove(i);
+                break;
+            }
+        myCourse.setEnrolled(myCourse.getEnrolled()-1);
+    }
+
+    private void enrollCourse(){
+        List<MiniCourse> list = myStudent.getCurrentCourses();
+        list.add(new MiniCourse(myCourse));
+        myStudent.setCurrentCourses(list);
+        mUsersDatabaseRef.setValue(myStudent);
+        myCourse.getEnrolledStudents().add(mFirebaseAuth.getCurrentUser().getUid());
+        myCourse.setEnrolled(myCourse.getEnrolled()+1);
+    }
+}
