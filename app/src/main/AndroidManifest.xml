@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".EnrollCourses" />
         <activity android:name=".Search" />
-        <activity android:name=".UserAccount"></activity>
+        <activity android:name=".UserAccount" />
+        <activity android:name=".Calendar"></activity>
     </application>
 
 </manifest>

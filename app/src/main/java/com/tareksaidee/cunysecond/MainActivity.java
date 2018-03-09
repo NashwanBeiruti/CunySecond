@@ -107,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent accountIntent = new Intent(MainActivity.this, UserAccount.class);
                 startActivity(accountIntent);
                 break;
+            case R.id.calendar_button:
+                Intent calendarIntent = new Intent(MainActivity.this, Calendar.class);
+                startActivity(calendarIntent);
+                break;
         }
 
     }

@@ -47,8 +47,8 @@ public class CourseChildViewHolder extends ChildViewHolder {
         courseAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (myStudent == null)
-                    Toast.makeText(view.getContext(), "Student not found", Toast.LENGTH_SHORT).show();
+                if (myStudent == null || myCourse.getEnrolled()==myCourse.getCapacity())
+                    Toast.makeText(view.getContext(), "Unable to register", Toast.LENGTH_SHORT).show();
                 else {
                     if (isEnrolled()) {
                         dropCourse();
