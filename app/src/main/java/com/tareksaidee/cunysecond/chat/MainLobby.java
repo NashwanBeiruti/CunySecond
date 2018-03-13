@@ -36,7 +36,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 
 
-public class Main extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainLobby extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String ANONYMOUS = "anonymous";
     private static final int RC_SIGN_IN = 123;
