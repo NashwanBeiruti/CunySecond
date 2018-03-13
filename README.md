@@ -13,5 +13,6 @@
     <li>share stuff</li>
     <li>student profile with list of classes, grade, credits, money due, student info, major, minor</li>
     <li>allow user to declare a major/minor</li>
+    <li>add loading things </li>
 </ul>
 

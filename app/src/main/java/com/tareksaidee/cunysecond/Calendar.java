@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
+
 
 public class Calendar extends AppCompatActivity implements MonthLoader.MonthChangeListener {
 
@@ -52,12 +54,24 @@ public class Calendar extends AppCompatActivity implements MonthLoader.MonthChan
 
     @Override
     public List<? extends WeekViewEvent> onMonthChange(int newYear, int newMonth) {
+        events.clear();
         LocalDate localDate = LocalDate.of(newYear, newMonth, 1);
         while (localDate.getMonthValue() == newMonth) {
             String today = localDate.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.US).toLowerCase();
             if (mEventsMap.containsKey(today)) {
-                Log.e("check","does");
-                events.addAll(mEventsMap.get(today));
+                ArrayList<WeekViewEvent> eventsToday = (ArrayList<WeekViewEvent>) mEventsMap.get(today);
+                for(int i=0;i<eventsToday.size();i++){
+                    WeekViewEvent thisEvent = eventsToday.get(i);
+                    thisEvent.getStartTime().set(java.util.Calendar.MONTH,newMonth);
+                    thisEvent.getStartTime().set(java.util.Calendar.YEAR,newYear);
+                    thisEvent.getStartTime().set(java.util.Calendar.DAY_OF_MONTH,localDate.getDayOfMonth());
+                    thisEvent.getEndTime().set(java.util.Calendar.MONTH,newMonth);
+                    thisEvent.getEndTime().set(java.util.Calendar.YEAR,newYear);
+                    thisEvent.getEndTime().set(java.util.Calendar.DAY_OF_MONTH,localDate.getDayOfMonth());
+                    thisEvent.setId(Math.abs(new Random().nextInt()));
+                    Log.e("id",thisEvent.getId() + "");
+                    events.add(thisEvent);
+                }
             }
             localDate = localDate.plusDays(1);
         }
@@ -73,7 +87,7 @@ public class Calendar extends AppCompatActivity implements MonthLoader.MonthChan
                     MiniCourse miniCourse = dataSnapshot.getValue(MiniCourse.class);
                     LocalTime startTime = LocalTime.parse(miniCourse.getStartTime(), timeFormatter);
                     LocalTime endTime = LocalTime.parse(miniCourse.getEndTime(), timeFormatter);
-                    WeekViewEvent event = new WeekViewEvent(miniCourse.getSectionID(), miniCourse.getName(),
+                    WeekViewEvent event = new WeekViewEvent(new Random().nextInt(), miniCourse.getName() + new Random().nextInt(),
                             miniCourse.getYear(), 1, 1, startTime.getHour(), startTime.getMinute(), miniCourse.getYear(),
                             1, 1, endTime.getHour(), endTime.getMinute());
                     ArrayList<String> days = (ArrayList<String>) miniCourse.getDays();
