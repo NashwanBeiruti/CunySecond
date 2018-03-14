@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.tareksaidee.cunysecond.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

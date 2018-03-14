@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.tareksaidee.cunysecond.R;
 
 import java.util.ArrayList;
 
