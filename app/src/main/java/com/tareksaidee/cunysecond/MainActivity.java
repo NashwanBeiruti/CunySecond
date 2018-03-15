@@ -12,6 +12,7 @@ import android.widget.VideoView;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.tareksaidee.cunysecond.chat.MainLobby;
 
 import java.util.Arrays;
 import java.util.List;
@@ -110,6 +111,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.calendar_button:
                 Intent calendarIntent = new Intent(MainActivity.this, Calendar.class);
                 startActivity(calendarIntent);
+                break;
+            case R.id.chat_button:
+                Intent chatIntent = new Intent(MainActivity.this, MainLobby.class);
+                startActivity(chatIntent);
                 break;
         }
 

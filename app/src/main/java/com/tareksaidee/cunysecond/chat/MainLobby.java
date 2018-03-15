@@ -60,7 +60,7 @@ public class MainLobby extends AppCompatActivity implements NavigationView.OnNav
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_lobby);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
         background = (ImageView) findViewById(R.id.mainactivity_bg);
@@ -91,6 +91,7 @@ public class MainLobby extends AppCompatActivity implements NavigationView.OnNav
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         mRoomsAdapter = new RoomsAdapter(this);
         mRecyclerView.setAdapter(mRoomsAdapter);
+        initilizeSignIn(FirebaseAuth.getInstance().getCurrentUser());
     }
 
 
@@ -182,6 +183,12 @@ public class MainLobby extends AppCompatActivity implements NavigationView.OnNav
     protected void onPause() {
         super.onPause();
         cleanUpOnSignout();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initilizeSignIn(FirebaseAuth.getInstance().getCurrentUser());
     }
 
     @Override
