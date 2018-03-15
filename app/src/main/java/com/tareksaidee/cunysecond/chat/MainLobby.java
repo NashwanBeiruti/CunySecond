@@ -1,9 +1,7 @@
 package com.tareksaidee.cunysecond.chat;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -31,9 +29,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.tareksaidee.cunysecond.R;
-
-import java.io.InputStream;
-import java.util.Arrays;
 
 
 public class MainLobby extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,8 +64,8 @@ public class MainLobby extends AppCompatActivity implements NavigationView.OnNav
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
         mProgressBar.setVisibility(ProgressBar.VISIBLE);
         background = (ImageView) findViewById(R.id.mainactivity_bg);
-        InputStream stream = this.getResources().openRawResource(R.raw.bclogo);
-        background.setImageBitmap(BitmapFactory.decodeStream(stream));
+//        InputStream stream = this.getResources().openRawResource(R.raw.bclogo);
+//        background.setImageBitmap(BitmapFactory.decodeStream(stream));
         mUsername = ANONYMOUS;
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mRoomsDatabaseReference = mFirebaseDatabase.getReference().child("rooms");

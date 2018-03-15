@@ -48,7 +48,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
                     .into(holder.userImage);
         } else
             Glide.with(holder.userImage.getContext())
-                    .load(R.drawable.com_facebook_profile_picture_blank_square)
+                    .load(R.drawable.fui_ic_facebook_white_22dp)
                     .into(holder.userImage);
         boolean isPhoto = message.getPhotoUrl() != null;
         if (isPhoto) {
