@@ -12,7 +12,13 @@
     <li>schedule</li>
     <li>share stuff</li>
     <li>student profile with list of classes, grade, credits, money due, student info, major, minor</li>
+    
+    
+    <li>limit enrolling based on max credits, capacity, schedule conflict and pre reqs</li>
+    <li>fix amount due and add pay button thing</li>
+    <li>fix schedule</li>
+    <li>add more data to the database</li>
     <li>allow user to declare a major/minor</li>
-    <li>add loading things </li>
+    <li>update registration page</li>
 </ul>
 
