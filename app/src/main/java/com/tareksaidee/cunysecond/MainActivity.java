@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +15,11 @@ import android.widget.VideoView;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.tareksaidee.cunysecond.chat.MainLobby;
 
 import java.util.Arrays;
@@ -29,6 +33,8 @@ public class MainActivity extends AppCompatActivity  {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private List<AuthUI.IdpConfig> providers;
     VideoView videoview;
+    private FirebaseDatabase mFirebaseDatabase;
+    private DatabaseReference mUsersReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,8 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
         videoview.start();
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mUsersReference = mFirebaseDatabase.getReference().child("users");
         mFirebaseAuth = FirebaseAuth.getInstance();
         providers = Arrays.asList(
                 new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
@@ -55,7 +63,7 @@ public class MainActivity extends AppCompatActivity  {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     //initilizeSignIn(user);
-
+                    checkUser();
                 } else {
                     startActivityForResult(
                             AuthUI.getInstance()
@@ -140,5 +148,23 @@ public class MainActivity extends AppCompatActivity  {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    private void checkUser(){
+        mUsersReference.orderByKey().equalTo(mFirebaseAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    Intent intent = new Intent(MainActivity.this,Registration.class);
+                    startActivity(intent);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }

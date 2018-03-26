@@ -19,10 +19,11 @@
         <activity android:name=".EnrollCourses" />
         <activity android:name=".Search" />
         <activity android:name=".UserAccount" />
-        <activity android:name=".Calendar"/>
-        <activity android:name=".chat.Chat"/>
-        <activity android:name=".chat.CreateRoom"/>
-        <activity android:name=".chat.MainLobby"/>
+        <activity android:name=".Calendar" />
+        <activity android:name=".chat.Chat" />
+        <activity android:name=".chat.CreateRoom" />
+        <activity android:name=".chat.MainLobby" />
+        <activity android:name=".Registration"></activity>
     </application>
 
 </manifest>
