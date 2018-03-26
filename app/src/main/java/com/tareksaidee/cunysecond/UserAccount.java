@@ -13,6 +13,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class UserAccount extends AppCompatActivity {
 
     private FirebaseAuth mFirebaseAuth;
@@ -32,7 +34,6 @@ public class UserAccount extends AppCompatActivity {
     private TextView userMajor;
     private RecyclerView currentCoursesView;
     private RecyclerView pastCoursesView;
-
 
 
     @Override
@@ -71,14 +72,20 @@ public class UserAccount extends AppCompatActivity {
                     userNameView.setText("Name: " + student.getFirstName() + " " + student.getLastName());
                     userDOB.setText("DOB: " + student.getDOB());
                     userAddress.setText("Address: " + student.getStreet() + "\n" + student.getCity()
-                        + ", NY " + student.getZipcode());
+                            + ", NY " + student.getZipcode());
                     userPhone.setText("Phone #: " + student.getPhoneNumber());
                     userGPA.setText("GPA: " + student.getGPA());
                     userCredits.setText("Credits: " + student.getTotalCredits());
                     userMoneyDue.setText("Money Due: " + student.getMoneyDue());
                     userMajor.setText("Major: " + student.getMajor());
-                    currentCoursesAdapter.setMiniCourses(student.getCurrentCourses());
-                    historyAdapter.setMiniCourses(student.getCourseHistory());
+                    if (student.getCurrentCourses() == null)
+                        currentCoursesAdapter.setMiniCourses(new ArrayList<MiniCourse>());
+                    else
+                        currentCoursesAdapter.setMiniCourses(student.getCurrentCourses());
+                    if (student.getCourseHistory() == null)
+                        historyAdapter.setMiniCourses(new ArrayList<MiniCourse>());
+                    else
+                        historyAdapter.setMiniCourses(student.getCourseHistory());
                 }
 
                 @Override

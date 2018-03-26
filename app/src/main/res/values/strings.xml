@@ -3,4 +3,30 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string-array name="schools">
+        <item>Borough Of Manhattan Community College</item>
+        <item>Bronx Community College</item>
+        <item>Guttman Community College</item>
+        <item>Hostos Community College</item>
+        <item>Kingsborough Community College</item>
+        <item>LaGuardia Community College</item>
+        <item>Queensborough Community College</item>
+        <item>Baruch College</item>
+        <item>Brooklyn College</item>
+        <item>College of Staten Island</item>
+        <item>Hunter College</item>
+        <item>John Jay College Of Criminal Justice</item>
+        <item>Lehman College</item>
+        <item>Medgar Evers College</item>
+        <item>New York City College Of Technology</item>
+        <item>Queens College</item>
+        <item>The City College Of New York</item>
+        <item>CUNY Graduate Center</item>
+        <item>CUNY Graduate School Of Journalism</item>
+        <item>CUNY Graduate School Of Public Health And Health Policy</item>
+        <item>CUNY School Of Law</item>
+        <item>CUNY School Of Professional Studies</item>
+        <item>Macaulay Honors College</item>
+    </string-array>
+
 </resources>
