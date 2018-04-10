@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -47,17 +48,22 @@ public class CourseChildViewHolder extends ChildViewHolder {
         courseAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (myStudent == null || myCourse.getEnrolled()==myCourse.getCapacity())
-                    Toast.makeText(view.getContext(), "Unable to register", Toast.LENGTH_SHORT).show();
-                else {
-                    if (isEnrolled()) {
-                        dropCourse();
-                    } else {
-                        enrollCourse();
-                    }
-                    mClassesDatabaseRef.setValue(myCourse);
-                    myStudent = null;
+                if (myStudent == null ) {
+                    Toast.makeText(view.getContext(), "Student doesn't exist", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+                if (myCourse.getEnrolled() == myCourse.getCapacity()) {
+                    Toast.makeText(view.getContext(), "Class is full", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (isEnrolled()) {
+                    dropCourse();
+                } else {
+                    enrollCourse();
+                }
+                mClassesDatabaseRef.setValue(myCourse);
+                myStudent = null;
             }
         });
         mFirebaseDatabase = FirebaseDatabase.getInstance();
@@ -73,7 +79,7 @@ public class CourseChildViewHolder extends ChildViewHolder {
         school.setText(course.getSchool());
         myCourse = course;
         mUsersDatabaseRef = mFirebaseDatabase.getReference().child("users").child(mFirebaseAuth.getCurrentUser().getUid());
-        mClassesDatabaseRef = mFirebaseDatabase.getReference().child(course.getSchool()).child(course.getSectionID()+"");
+        mClassesDatabaseRef = mFirebaseDatabase.getReference().child(course.getSchool()).child(course.getSectionID() + "");
         mUsersDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -90,6 +96,8 @@ public class CourseChildViewHolder extends ChildViewHolder {
 
     private boolean isEnrolled() {
         List<MiniCourse> list = myStudent.getCurrentCourses();
+        if (list == null)
+            return false;
         for (MiniCourse mCourse : list)
             if (mCourse.getSectionID() == myCourse.getSectionID())
                 return true;
@@ -106,29 +114,31 @@ public class CourseChildViewHolder extends ChildViewHolder {
         }
     }
 
-    private void dropCourse(){
+    private void dropCourse() {
         List<MiniCourse> list = myStudent.getCurrentCourses();
-        for (int i=0;i<list.size();i++)
+        for (int i = 0; i < list.size(); i++)
             if (list.get(i).getSectionID() == myCourse.getSectionID()) {
                 list.remove(i);
                 break;
             }
         myStudent.setCurrentCourses(list);
         mUsersDatabaseRef.setValue(myStudent);
-        for(int i=0;i<myCourse.getEnrolledStudents().size();i++)
-            if(myCourse.getEnrolledStudents().get(i).equals(mFirebaseAuth.getCurrentUser().getUid())) {
+        for (int i = 0; i < myCourse.getEnrolledStudents().size(); i++)
+            if (myCourse.getEnrolledStudents().get(i).equals(mFirebaseAuth.getCurrentUser().getUid())) {
                 myCourse.getEnrolledStudents().remove(i);
                 break;
             }
-        myCourse.setEnrolled(myCourse.getEnrolled()-1);
+        myCourse.setEnrolled(myCourse.getEnrolled() - 1);
     }
 
-    private void enrollCourse(){
+    private void enrollCourse() {
         List<MiniCourse> list = myStudent.getCurrentCourses();
+        if (list == null)
+            list = new ArrayList<>();
         list.add(new MiniCourse(myCourse));
         myStudent.setCurrentCourses(list);
         mUsersDatabaseRef.setValue(myStudent);
         myCourse.getEnrolledStudents().add(mFirebaseAuth.getCurrentUser().getUid());
-        myCourse.setEnrolled(myCourse.getEnrolled()+1);
+        myCourse.setEnrolled(myCourse.getEnrolled() + 1);
     }
 }
