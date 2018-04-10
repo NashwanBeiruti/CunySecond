@@ -48,18 +48,21 @@ public class CourseChildViewHolder extends ChildViewHolder {
         courseAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (myStudent == null ) {
+                if (myStudent == null) {
                     Toast.makeText(view.getContext(), "Student doesn't exist", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (myCourse.getEnrolled() == myCourse.getCapacity()) {
-                    Toast.makeText(view.getContext(), "Class is full", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 if (isEnrolled()) {
                     dropCourse();
                 } else {
+                    if (myCourse.getEnrolled() == myCourse.getCapacity()) {
+                        Toast.makeText(view.getContext(), "Class is full", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if (!statsifiesPrereqs()) {
+                        Toast.makeText(view.getContext(), "Pre-reqs aren't satisfied", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                     enrollCourse();
                 }
                 mClassesDatabaseRef.setValue(myCourse);
@@ -140,5 +143,30 @@ public class CourseChildViewHolder extends ChildViewHolder {
         mUsersDatabaseRef.setValue(myStudent);
         myCourse.getEnrolledStudents().add(mFirebaseAuth.getCurrentUser().getUid());
         myCourse.setEnrolled(myCourse.getEnrolled() + 1);
+    }
+
+    private boolean statsifiesPrereqs() {
+        boolean satisfied = false;
+        List<String> prereqs = myCourse.getPrereqs();
+        if (prereqs == null)
+            return true;
+
+        List<MiniCourse> courseHist = myStudent.getCourseHistory();
+        for (String prereq : prereqs) {
+            if (courseHist != null)
+                for (MiniCourse course : courseHist)
+                    if (course.getCourseDeptID().equals(prereq))
+                        satisfied = true;
+            if (!satisfied && myStudent.getCurrentCourses() != null)
+                for (MiniCourse course : myStudent.getCurrentCourses())
+                    if (course.getCourseDeptID().equals(prereq) && (course.getYear() != myCourse.getYear()
+                            || !course.getSemester().equals(myCourse.getSemester()))) {
+                        satisfied = true;
+                    }
+            if (!satisfied)
+                return false;
+            satisfied = false;
+        }
+        return true;
     }
 }
