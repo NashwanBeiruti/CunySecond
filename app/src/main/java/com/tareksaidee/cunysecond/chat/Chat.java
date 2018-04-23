@@ -35,6 +35,7 @@ public class Chat extends AppCompatActivity {
 
     private static final int RC_PHOTO_PICKER = 2;
     public static final int DEFAULT_MSG_LENGTH_LIMIT = 400;
+    public static final String DEFAULT_PROFILE_PIC = "https://i.imgur.com/E0Gfyj5.jpg";
 
 
     String roomName;
@@ -64,7 +65,10 @@ public class Chat extends AppCompatActivity {
         roomName = getIntent().getStringExtra("room");
         mUsername = getIntent().getStringExtra("username");
         setTitle(roomName);
-        mUserPhoto = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();
+        if(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl()!=null)
+            mUserPhoto = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString();
+        else
+            mUserPhoto = DEFAULT_PROFILE_PIC;
         messagesView = (RecyclerView) findViewById(R.id.messageRecyclerView);
         mMessageEditText = (EditText) findViewById(R.id.messageEditText);
         mPhotoPickerButton = (ImageButton) findViewById(R.id.photoPickerButton);

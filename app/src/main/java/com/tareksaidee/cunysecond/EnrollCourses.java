@@ -4,7 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +26,7 @@ public class EnrollCourses extends AppCompatActivity {
     private DatabaseReference mMessagesDatabaseReference;
     private ChildEventListener mChildEventListener;
     private String classID;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class EnrollCourses extends AppCompatActivity {
         coursesAdapter = new CoursesAdapter(this,courses);
         coursesView.setAdapter(coursesAdapter);
         coursesView.setLayoutManager(layoutManager);
+        progressBar = (ProgressBar) findViewById(R.id.progress_bar);
     }
 
     void attachDatabaseReadListener(String classID) {
@@ -51,7 +54,7 @@ public class EnrollCourses extends AppCompatActivity {
                     temp.setSchool(mMessagesDatabaseReference.getKey());
                     CourseParent parent = new CourseParent(temp);
                     coursesAdapter.addCourse(parent);
-                    Log.d("whatever", temp.toString());
+                    progressBar.setVisibility(View.GONE);
                 }
 
                 @Override
