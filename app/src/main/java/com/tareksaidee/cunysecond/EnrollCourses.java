@@ -36,7 +36,7 @@ public class EnrollCourses extends AppCompatActivity {
         coursesView = (RecyclerView) findViewById(R.id.courses_recycler);
         courses = new ArrayList<>();
         layoutManager = new LinearLayoutManager(this);
-        //getData();
+        //pushData("queens_college");
         coursesAdapter = new CoursesAdapter(this,courses);
         coursesView.setAdapter(coursesAdapter);
         coursesView.setLayoutManager(layoutManager);
@@ -98,35 +98,45 @@ public class EnrollCourses extends AppCompatActivity {
         }
     }
 
-//    public void getData(){
-//        Course course = new Course();
-//        course.setCapacity(20);
-//        course.setClassID("1010");
-//        course.setCredits(3);
-//        course.setDays(new ArrayList<String>());
-//        course.setDepartment("CISC");
-//        course.setDescription("dsadasdsadasdsadasdast");
-//        course.setEnrolled(12);
-//        course.setInstructor("hello");
-//        course.setStartTime(LocalTime.now());
-//        course.setEndTime(LocalTime.now());
-//        course.setMode("ONLINE");
-//        course.setPrereqs(new ArrayList<String>());
-//        course.setSemester("Spring");
-//        course.setYear(2012);
-//        course.setRoom("232NE");
-//        ArrayList<String> days = new ArrayList<>();
-//        days.add("Mon");
-//        days.add("Tues");
-//        course.setDays(days);
-//        course.setSchool("brooklyn college");
-//        course.setSectionID(12313);
-//        course.setName("intro to programming");
-//        ArrayList<Course> list = new ArrayList<>();
-//        list.add(course);
-//        CourseParent parent = new CourseParent(list);
-//        courses.add(parent);
-//        courses.add(parent);
-//    }
+    public void pushData(String school){
+        ArrayList<Course> coursesTemp = new ArrayList<>();
+        Course course = new Course();
+        course.setCapacity(20);
+        course.setClassID("3130");
+        course.setCredits(3);
+        course.setDays(new ArrayList<String>());
+        course.setDepartment("CISC");
+        course.setDescription("dsadasdsadasdsadasdast");
+        course.setEnrolled(12);
+        course.setInstructor("hello");
+        course.setStartTime("10:45 AM");
+        course.setEndTime("12:15 PM");
+        course.setMode("ONLINE");
+        List<String> prereqs = new ArrayList<>();
+        prereqs.add("CISC 1110");
+        course.setPrereqs(prereqs);
+        List<String> students = new ArrayList<>();
+        students.add("1232131");
+        course.setEnrolledStudents(students);
+        course.setSemester("Spring");
+        course.setYear(2012);
+        course.setRoom("232NE");
+        ArrayList<String> days = new ArrayList<>();
+        days.add("Mon");
+        days.add("Tues");
+        List<String> books = new ArrayList<>();
+        books.add("Intro to Programming");
+        course.setTextbooks(books);
+        course.setDays(days);
+        course.setSchool("queens_college");
+        course.setSectionID(12313);
+        course.setLevel("undergrad");
+        course.setName("intro to programming");
+        coursesTemp.add(course);
+        coursesTemp.add(course);
+        coursesTemp.add(course);
+        DatabaseReference classesReference = mFirebaseDatabase.getReference().child(school);
+        classesReference.setValue(coursesTemp);
+    }
 
 }
