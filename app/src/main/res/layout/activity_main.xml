@@ -25,6 +25,16 @@
         android:gravity="center"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
+            android:scaleType="fitXY"
+            android:src="@drawable/logo" />
+
+
         <Button
             android:id="@+id/enroll_button"
             android:layout_width="wrap_content"
@@ -32,8 +42,15 @@
             android:layout_gravity="center"
             android:layout_margin="16dp"
             android:alpha="0.8"
+            android:background="@drawable/round_button"
             android:onClick="buttonControl"
-            android:text="Enroll" />
+            android:padding="10dp"
+            android:shadowColor="#111111"
+            android:shadowRadius="2"
+            android:text="Enroll"
+            android:textColor="#FFFFFF"
+            android:textSize="32dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/chat_button"
@@ -42,8 +59,15 @@
             android:layout_gravity="center"
             android:layout_margin="16dp"
             android:alpha="0.8"
+            android:background="@drawable/round_button"
             android:onClick="buttonControl"
-            android:text="Chat" />
+            android:padding="10dp"
+            android:shadowColor="#111111"
+            android:shadowRadius="2"
+            android:text="Chat"
+            android:textColor="#FFFFFF"
+            android:textSize="32dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/account_button"
@@ -52,8 +76,15 @@
             android:layout_gravity="center"
             android:layout_margin="16dp"
             android:alpha="0.8"
+            android:background="@drawable/round_button"
             android:onClick="buttonControl"
-            android:text="Account" />
+            android:padding="10dp"
+            android:shadowColor="#111111"
+            android:shadowRadius="2"
+            android:text="Account"
+            android:textColor="#FFFFFF"
+            android:textSize="32dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/calendar_button"
@@ -62,8 +93,15 @@
             android:layout_gravity="center"
             android:layout_margin="16dp"
             android:alpha="0.8"
+            android:background="@drawable/round_button"
             android:onClick="buttonControl"
-            android:text="Calendar" />
+            android:padding="10dp"
+            android:shadowColor="#111111"
+            android:shadowRadius="2"
+            android:text="Calendar"
+            android:textColor="#FFFFFF"
+            android:textSize="32dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>

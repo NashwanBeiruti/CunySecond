@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         videoview = (VideoView) findViewById(R.id.background_video);
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.nyc);
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.nyc3);
         videoview.setVideoURI(uri);
         videoview.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
