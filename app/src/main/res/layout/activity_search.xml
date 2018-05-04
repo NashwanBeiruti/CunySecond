@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context="com.tareksaidee.cunysecond.Search">
 
+    <Spinner
+        android:id="@+id/school_drop_down"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        android:spinnerMode="dropdown"
+        android:background="@android:drawable/btn_dropdown"/>
+
     <EditText
         android:id="@+id/class_id_field"
         android:layout_width="match_parent"
