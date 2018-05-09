@@ -69,15 +69,15 @@ public class UserAccount extends AppCompatActivity {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     Student student = dataSnapshot.getValue(Student.class);
-                    userNameView.setText("Name: " + student.getFirstName() + " " + student.getLastName());
-                    userDOB.setText("DOB: " + student.getDOB());
-                    userAddress.setText("Address: " + student.getStreet() + "\n" + student.getCity()
+                    userNameView.setText(student.getFirstName() + " " + student.getLastName());
+                    userDOB.setText(student.getDOB());
+                    userAddress.setText(student.getStreet() + "\n" + student.getCity()
                             + ", NY " + student.getZipcode());
-                    userPhone.setText("Phone #: " + student.getPhoneNumber());
-                    userGPA.setText("GPA: " + student.getGPA());
-                    userCredits.setText("Credits: " + student.getTotalCredits());
-                    userMoneyDue.setText("Money Due: " + student.getMoneyDue());
-                    userMajor.setText("Major: " + student.getMajor());
+                    userPhone.setText(student.getPhoneNumber());
+                    userGPA.setText(student.getGPA()+ "");
+                    userCredits.setText(student.getTotalCredits() +"");
+                    userMoneyDue.setText(student.getMoneyDue() + "");
+                    userMajor.setText(student.getMajor());
                     if (student.getCurrentCourses() == null)
                         currentCoursesAdapter.setMiniCourses(new ArrayList<MiniCourse>());
                     else
