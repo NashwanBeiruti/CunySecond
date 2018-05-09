@@ -13,31 +13,56 @@
         android:orientation="vertical"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:paddingTop="56dp">
+        android:paddingTop="16dp">
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="24dp"
             android:src="@drawable/ic_menu_manage" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="Complete Your Account Information" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="School"
+            android:textStyle="bold" />
 
         <Spinner
             android:id="@+id/school_drop_down"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            android:background="@android:drawable/btn_dropdown"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:text="Date of birth"
+            android:textStyle="bold" />
 
         <DatePicker
             android:id="@+id/user_dob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp" />
-
+            android:layout_marginTop="8dp"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
 
         <EditText
             android:id="@+id/user_phone"
