@@ -19,7 +19,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -41,7 +40,6 @@ public class MainLobby extends AppCompatActivity implements NavigationView.OnNav
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mRoomsDatabaseReference;
     private ChildEventListener mRoomsEventListener;
-    private FirebaseAuth mFirebaseAuth;
     private RoomsAdapter mRoomsAdapter;
     private String mUsername;
     private DrawerLayout mDrawerLayout;
@@ -69,7 +67,6 @@ public class MainLobby extends AppCompatActivity implements NavigationView.OnNav
         mUsername = ANONYMOUS;
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mRoomsDatabaseReference = mFirebaseDatabase.getReference().child("rooms");
-        mFirebaseAuth = FirebaseAuth.getInstance();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  /* host Activity */
@@ -123,9 +120,6 @@ public class MainLobby extends AppCompatActivity implements NavigationView.OnNav
                 intent.putExtra("rooms", mRoomsAdapter.getRooms());
                 startActivity(intent);
                 return true;
-            case R.id.sign_out:
-                AuthUI.getInstance().signOut(this);
-                break;
         }
         if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
