@@ -74,6 +74,7 @@ public class Registration extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.sign_out:
                 AuthUI.getInstance().signOut(this);
+                finish();
                 break;
         }
         return super.onOptionsItemSelected(item);

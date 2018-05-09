@@ -103,7 +103,6 @@ public class Chat extends AppCompatActivity {
         mSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: Send messages on click
                 ChatMessage friendlyMessage = new ChatMessage(mMessageEditText.getText().toString(),
                         mUsername, null, mUserPhoto);
                 mMessagesDatabaseReference.push().setValue(friendlyMessage);
