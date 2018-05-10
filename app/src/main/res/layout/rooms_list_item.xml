@@ -10,9 +10,10 @@
         android:id="@+id/room_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
-        android:layout_centerInParent="true"
+        android:fontFamily="@font/tusj"
         android:textColor="#000099"
         android:textStyle="bold"
         tools:text="Room Name" />

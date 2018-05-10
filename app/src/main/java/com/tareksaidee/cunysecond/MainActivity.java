@@ -1,6 +1,7 @@
 package com.tareksaidee.cunysecond;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.VideoView;
 
 import com.firebase.ui.auth.AuthUI;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     VideoView videoview;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mUsersReference;
+    private Typeface face;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         videoview.start();
+        face = Typeface.createFromAsset(getAssets(), "fonts/tusj.ttf");
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUsersReference = mFirebaseDatabase.getReference().child("users");
         mFirebaseAuth = FirebaseAuth.getInstance();
@@ -76,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+        setFonts();
     }
 
 
@@ -167,5 +172,12 @@ public class MainActivity extends AppCompatActivity {
 
                 }
             });
+    }
+
+    void setFonts(){
+        ((Button) findViewById(R.id.enroll_button)).setTypeface(face);
+        ((Button) findViewById(R.id.account_button)).setTypeface(face);
+        ((Button) findViewById(R.id.calendar_button)).setTypeface(face);
+        ((Button) findViewById(R.id.chat_button)).setTypeface(face);
     }
 }

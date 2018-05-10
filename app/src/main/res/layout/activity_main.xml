@@ -41,7 +41,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:alpha="0.8"
             android:background="@drawable/round_button"
             android:onClick="buttonControl"
             android:padding="10dp"
@@ -49,8 +48,7 @@
             android:shadowRadius="2"
             android:text="Enroll"
             android:textColor="#FFFFFF"
-            android:textSize="32dp"
-            android:textStyle="bold" />
+            android:textSize="32dp" />
 
         <Button
             android:id="@+id/chat_button"
@@ -58,7 +56,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:alpha="0.8"
             android:background="@drawable/round_button"
             android:onClick="buttonControl"
             android:padding="10dp"
@@ -66,8 +63,7 @@
             android:shadowRadius="2"
             android:text="Chat"
             android:textColor="#FFFFFF"
-            android:textSize="32dp"
-            android:textStyle="bold" />
+            android:textSize="32dp"/>
 
         <Button
             android:id="@+id/account_button"
@@ -75,7 +71,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:alpha="0.8"
             android:background="@drawable/round_button"
             android:onClick="buttonControl"
             android:padding="10dp"
@@ -83,8 +78,7 @@
             android:shadowRadius="2"
             android:text="Account"
             android:textColor="#FFFFFF"
-            android:textSize="32dp"
-            android:textStyle="bold" />
+            android:textSize="32dp"/>
 
         <Button
             android:id="@+id/calendar_button"
@@ -92,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="16dp"
-            android:alpha="0.8"
             android:background="@drawable/round_button"
             android:onClick="buttonControl"
             android:padding="10dp"
@@ -100,8 +93,7 @@
             android:shadowRadius="2"
             android:text="Calendar"
             android:textColor="#FFFFFF"
-            android:textSize="32dp"
-            android:textStyle="bold" />
+            android:textSize="32dp"/>
     </LinearLayout>
 
 </RelativeLayout>

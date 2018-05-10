@@ -27,16 +27,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
+            android:fontFamily="@font/tusj"
             android:text="Complete Your Account Information"
             android:textAllCaps="true"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/tusj"
             android:text="School"
             android:textAllCaps="true"
             android:textColor="#ffffff"
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
+            android:fontFamily="@font/tusj"
             android:text="Date of birth"
             android:textAllCaps="true"
             android:textColor="#ffffff"
@@ -130,6 +133,7 @@
             android:layout_marginBottom="32dp"
             android:layout_marginTop="32dp"
             android:background="#0077c2"
+            android:fontFamily="@font/tusj"
             android:padding="20dp"
             android:shadowColor="#111111"
             android:shadowRadius="2"

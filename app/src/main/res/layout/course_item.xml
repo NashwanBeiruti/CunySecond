@@ -35,6 +35,7 @@
                 android:id="@+id/dept_and_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/tusj"
                 android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -44,6 +45,7 @@
                 android:id="@+id/course_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/tusj"
                 android:textAllCaps="true"
                 android:textColor="@color/goldColor"
                 tools:text="Intro to Programming" />

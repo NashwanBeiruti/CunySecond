@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/tusj"
             android:text="ADDRESS"
             android:textColor="@color/goldColor"
             android:textSize="20sp"
@@ -75,10 +76,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/tusj"
             android:text="PHONE #"
             android:textColor="@color/goldColor"
             android:textSize="20sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/user_phone"
             android:layout_width="wrap_content"
@@ -89,15 +92,18 @@
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="132-123-1321" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/tusj"
             android:text="GPA"
             android:textColor="@color/goldColor"
             android:textSize="20sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/user_gpa"
             android:layout_width="wrap_content"
@@ -108,15 +114,18 @@
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="3.5" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/tusj"
             android:text="TOTAL CREDITS"
             android:textColor="@color/goldColor"
             android:textSize="20sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/user_credits"
             android:layout_width="wrap_content"
@@ -127,15 +136,18 @@
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="100" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/tusj"
             android:text="MONEY DUE"
             android:textColor="@color/goldColor"
             android:textSize="20sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/user_money_due"
             android:layout_width="wrap_content"
@@ -146,15 +158,18 @@
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="$2000.00" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/tusj"
             android:text="MAJOR"
             android:textColor="@color/goldColor"
             android:textSize="20sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/user_major"
             android:layout_width="wrap_content"
@@ -176,6 +191,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/tusj"
                 android:gravity="center"
                 android:text="Current Courses"
                 android:textColor="@color/goldColor"
@@ -186,6 +202,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/tusj"
                 android:gravity="center"
                 android:text="Course History"
                 android:textColor="@color/goldColor"
