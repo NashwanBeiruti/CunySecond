@@ -40,6 +40,8 @@ public class Registration extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schoolsSpinner.setAdapter(adapter);
         mFirebaseAuth = FirebaseAuth.getInstance();
+        if(mFirebaseAuth.getCurrentUser()==null)
+            finish();
         dob = (DatePicker) findViewById(R.id.user_dob);
         phone = (EditText) findViewById(R.id.user_phone);
         city = (EditText) findViewById(R.id.user_city);
@@ -56,8 +58,14 @@ public class Registration extends AppCompatActivity {
                 student.setCity(city.getText().toString());
                 student.setDOB(dob.getMonth()+"/"+dob.getDayOfMonth()+"/"+dob.getYear());
                 String fullName = mFirebaseAuth.getCurrentUser().getDisplayName();
-                student.setFirstName(fullName.substring(0,fullName.indexOf(' ')));
-                student.setLastName(fullName.substring(fullName.indexOf(' ') + 1));
+                if(fullName.contains(" ")) {
+                    student.setFirstName(fullName.substring(0, fullName.indexOf(' ')));
+                    student.setLastName(fullName.substring(fullName.indexOf(' ') + 1));
+                }
+                else{
+                    student.setFirstName(fullName);
+                    student.setLastName(fullName);
+                }
                 student.setMajor("undeclared");
                 student.setPhoneNumber(phone.getText().toString());
                 student.setSchool(schoolsSpinner.getSelectedItem().toString());

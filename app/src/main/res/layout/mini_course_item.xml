@@ -13,7 +13,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:layout_marginTop="8dp"
-        android:background="@android:color/black" />
+        android:background="@android:color/white" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -33,6 +33,7 @@
                 android:id="@+id/dept_and_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#ffffff"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="CISC 1100" />
@@ -41,6 +42,7 @@
                 android:id="@+id/course_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/goldColor"
                 tools:text="Intro to Programming" />
 
             <TextView
@@ -85,6 +87,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 tools:text="3 Credits, Grade: IP" />
+
             <TextView
                 android:id="@+id/course_semester"
                 android:layout_width="match_parent"

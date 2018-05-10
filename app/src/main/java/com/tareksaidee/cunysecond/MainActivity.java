@@ -25,7 +25,7 @@ import com.tareksaidee.cunysecond.chat.MainLobby;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 123;
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         videoview = (VideoView) findViewById(R.id.background_video);
-        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.nyc3);
+        Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.nyc3);
         videoview.setVideoURI(uri);
         videoview.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
@@ -105,14 +105,14 @@ public class MainActivity extends AppCompatActivity  {
     @Override
     protected void onStop() {
         super.onStop();
-        if (mAuthStateListener != null){
+        if (mAuthStateListener != null) {
             mFirebaseAuth.removeAuthStateListener(mAuthStateListener);
         }
     }
 
-    public void buttonControl(View view){
+    public void buttonControl(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.enroll_button:
                 Intent myIntent = new Intent(MainActivity.this, Search.class);
                 startActivity(myIntent);
@@ -150,21 +150,22 @@ public class MainActivity extends AppCompatActivity  {
         return true;
     }
 
-    private void checkUser(){
-        mUsersReference.orderByKey().equalTo(mFirebaseAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(!dataSnapshot.exists()){
-                    Intent intent = new Intent(MainActivity.this,Registration.class);
-                    startActivity(intent);
+    private void checkUser() {
+        if (mFirebaseAuth.getCurrentUser() != null)
+            mUsersReference.orderByKey().equalTo(mFirebaseAuth.getCurrentUser().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.exists()) {
+                        Intent intent = new Intent(MainActivity.this, Registration.class);
+                        startActivity(intent);
+                    }
+
                 }
 
-            }
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+                }
+            });
     }
 }
