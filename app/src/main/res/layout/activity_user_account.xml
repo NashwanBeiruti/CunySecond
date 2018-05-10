@@ -208,7 +208,7 @@
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp"
-                android:background="@color/goldColor" />
+                android:background="@color/colorAccent" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/student_course_history"
