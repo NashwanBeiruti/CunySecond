@@ -27,19 +27,21 @@ public class EnrollCourses extends AppCompatActivity {
     private ChildEventListener mChildEventListener;
     private String classID;
     private ProgressBar progressBar;
+    private String school;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enroll_courses);
         classID = getIntent().getStringExtra("classID");
+        school = getIntent().getStringExtra("school");
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("brooklyn_college");
+        mMessagesDatabaseReference = mFirebaseDatabase.getReference().child(getSchool(school));
         coursesView = (RecyclerView) findViewById(R.id.courses_recycler);
         courses = new ArrayList<>();
         layoutManager = new LinearLayoutManager(this);
         //pushData("queens_college");
-        coursesAdapter = new CoursesAdapter(this,courses);
+        coursesAdapter = new CoursesAdapter(this, courses);
         coursesView.setAdapter(coursesAdapter);
         coursesView.setLayoutManager(layoutManager);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -101,7 +103,7 @@ public class EnrollCourses extends AppCompatActivity {
         }
     }
 
-    public void pushData(String school){
+    public void pushData(String school) {
         ArrayList<Course> coursesTemp = new ArrayList<>();
         Course course = new Course();
         course.setCapacity(20);
@@ -140,6 +142,59 @@ public class EnrollCourses extends AppCompatActivity {
         coursesTemp.add(course);
         DatabaseReference classesReference = mFirebaseDatabase.getReference().child(school);
         classesReference.setValue(coursesTemp);
+    }
+
+    private String getSchool(String school) {
+        switch (school) {
+            case "Borough Of Manhattan Community College":
+                return "borough_of_manhattan";
+            case "Bronx Community College":
+                return "bronx_community";
+            case "Baruch College":
+                return "baruch_college";
+            case "Brooklyn College":
+                return "brooklyn_college";
+            case "Guttman Community College":
+                return "guttman_community";
+            case "Hostos Community College":
+                return "hostos_community";
+            case "Kingsborough Community College":
+                return "kingsborough_community";
+            case "LaGuardia Community College":
+                return "laguardia_community";
+            case "Queensborough Community College":
+                return "queensborough_community";
+            case "College of Staten Island":
+                return "staten_island";
+            case "Hunter College":
+                return "hunter_college";
+            case "John Jay College Of Criminal Justice":
+                return "john_jay";
+            case "Lehman College":
+                return "lehman_college";
+            case "Medgar Evers College":
+                return "medgar_evers";
+            case "New York City College Of Technology":
+                return "city_college_of_tech";
+            case "Queens College":
+                return "queens_college";
+            case "The City College Of New York":
+                return "city_college";
+            case "CUNY Graduate Center":
+                return "graduate_center";
+            case "CUNY Graduate School Of Journalism":
+                return "school_of_journalism";
+            case "CUNY Graduate School Of Public Health And Health Policy":
+                return "school_of_public_health";
+            case "CUNY School Of Law":
+                return "school_of_law";
+            case "CUNY School Of Professional Studies":
+                return "school_of_professional_studies";
+            case "Macaulay Honors College":
+                return "macaulay_honors";
+            default:
+                return "brooklyn_college";
+        }
     }
 
 }

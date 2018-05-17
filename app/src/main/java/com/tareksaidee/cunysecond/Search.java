@@ -30,6 +30,7 @@ public class Search extends AppCompatActivity {
         if (!classID.getText().toString().trim().equals("")) {
             Intent intent = new Intent(this, EnrollCourses.class);
             intent.putExtra("classID", classID.getText().toString());
+            intent.putExtra("school",schoolsSpinner.getSelectedItem().toString());
             startActivity(intent);
         }
     }
