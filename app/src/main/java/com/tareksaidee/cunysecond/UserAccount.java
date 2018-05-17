@@ -1,10 +1,16 @@
 package com.tareksaidee.cunysecond;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -21,6 +27,7 @@ public class UserAccount extends AppCompatActivity {
     private String userUID;
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mUserDatabaseReference;
+    private DatabaseReference updateUserDatabaseRef;
     private ChildEventListener mChildEventListener;
     private MiniCourseAdapter currentCoursesAdapter;
     private MiniCourseAdapter historyAdapter;
@@ -34,6 +41,7 @@ public class UserAccount extends AppCompatActivity {
     private TextView userMajor;
     private RecyclerView currentCoursesView;
     private RecyclerView pastCoursesView;
+    private Student student;
 
 
     @Override
@@ -54,6 +62,7 @@ public class UserAccount extends AppCompatActivity {
         userUID = mFirebaseAuth.getCurrentUser().getUid();
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mUserDatabaseReference = mFirebaseDatabase.getReference().child("users");
+        updateUserDatabaseRef = mFirebaseDatabase.getReference().child("users").child(mFirebaseAuth.getCurrentUser().getUid());
         currentCoursesAdapter = new MiniCourseAdapter(this);
         historyAdapter = new MiniCourseAdapter(this);
         pastCoursesView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -68,14 +77,14 @@ public class UserAccount extends AppCompatActivity {
             mChildEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                    Student student = dataSnapshot.getValue(Student.class);
+                    student = dataSnapshot.getValue(Student.class);
                     userNameView.setText(student.getFirstName() + " " + student.getLastName());
                     userDOB.setText(student.getDOB());
                     userAddress.setText(student.getStreet() + "\n" + student.getCity()
                             + ", NY " + student.getZipcode());
                     userPhone.setText(student.getPhoneNumber());
-                    userGPA.setText(student.getGPA()+ "");
-                    userCredits.setText(student.getTotalCredits() +"");
+                    userGPA.setText(student.getGPA() + "");
+                    userCredits.setText(student.getTotalCredits() + "");
                     userMoneyDue.setText(student.getMoneyDue() + "");
                     userMajor.setText(student.getMajor());
                     if (student.getCurrentCourses() == null)
@@ -90,7 +99,24 @@ public class UserAccount extends AppCompatActivity {
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
+                    student = dataSnapshot.getValue(Student.class);
+                    userNameView.setText(student.getFirstName() + " " + student.getLastName());
+                    userDOB.setText(student.getDOB());
+                    userAddress.setText(student.getStreet() + "\n" + student.getCity()
+                            + ", NY " + student.getZipcode());
+                    userPhone.setText(student.getPhoneNumber());
+                    userGPA.setText(student.getGPA() + "");
+                    userCredits.setText(student.getTotalCredits() + "");
+                    userMoneyDue.setText(student.getMoneyDue() + "");
+                    userMajor.setText(student.getMajor());
+                    if (student.getCurrentCourses() == null)
+                        currentCoursesAdapter.setMiniCourses(new ArrayList<MiniCourse>());
+                    else
+                        currentCoursesAdapter.setMiniCourses(student.getCurrentCourses());
+                    if (student.getCourseHistory() == null)
+                        historyAdapter.setMiniCourses(new ArrayList<MiniCourse>());
+                    else
+                        historyAdapter.setMiniCourses(student.getCourseHistory());
                 }
 
                 @Override
@@ -110,6 +136,31 @@ public class UserAccount extends AppCompatActivity {
             };
             mUserDatabaseReference.orderByKey().equalTo(userUID).addChildEventListener(mChildEventListener);
         }
+    }
+
+    public void declareMajor(View view) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Declare Major");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setTitle("Enter Major Name");
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                student.setMajor(input.getText().toString());
+                updateUserDatabaseRef.setValue(student);
+                Toast.makeText(input.getContext(), "Major Updated!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override
